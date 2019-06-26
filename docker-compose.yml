@@ -4,10 +4,10 @@ services:
   web:
     env_file: .env
     image: buzzingpixel/nginx:1.0.2
-    container_name: nginx-ssh2-env
+    container_name: nginx-gitssh2-env
     restart: always
     environment:
-      HOSTNAME: nginx-ssh2-env
+      HOSTNAME: nginx-gitssh2-env
     ports:
       - ${HOST_NGINX_PORT}:${DOCKER_NGINX_PORT}
     volumes:
@@ -17,16 +17,16 @@ services:
       - ${SSL_CERT}:/fullchain.pem
       - ${SSL_KEY}:/privkey.pem
     networks:
-      common-ssh2-env-network:
+      common-gitssh2-env-network:
         aliases:
           - ${SERVER_NAME_ALIAS}
   php:
     env_file: .env
     image: buzzingpixel/php7.2:1.0.6
-    container_name: php-ssh2-env
+    container_name: php-gitssh2-env
     restart: always
     environment:
-      HOSTNAME: php-ssh2-env
+      HOSTNAME: php-gitssh2-env
       COMPOSER_HOME: /composer-home-volume
     volumes:
       - ./serverConfig/php/php-custom-config.ini:/usr/local/etc/php/conf.d/php-custom-config.ini
@@ -36,21 +36,21 @@ services:
       - composer-home-volume:/composer-home-volume
       - vendor-volume:/app/vendor:delegated
     networks:
-      common-ssh2-env-network:
+      common-gitssh2-env-network:
   db:
     env_file: .env
     image: buzzingpixel/mariadb:2.0.1
-    container_name: db-ssh2-env
+    container_name: db-gitssh2-env
     restart: always
     environment:
-      HOSTNAME: db-ssh2-env
+      HOSTNAME: db-gitssh2-env
     user: "1000:50"
     volumes:
       - db-volume:/var/lib/mysql:delegated
     ports:
       - 7543:3306
     networks:
-      common-ssh2-env-network:
+      common-gitssh2-env-network:
 
 volumes:
   composer-home-volume:
@@ -58,4 +58,4 @@ volumes:
   vendor-volume:
 
 networks:
-  common-ssh2-env-network:
+  common-gitssh2-env-network:

@@ -18,23 +18,23 @@ if "%cmd%" == "" (
 
 if "%cmd%" == "up" (
     set valid=true
-    docker-compose -f docker-compose.yml -p ssh2-env up -d
-    docker exec -it --user root --workdir /app php-ssh2-env bash -c "cd /app && composer install"
+    docker-compose -f docker-compose.yml -p gitssh2-env up -d
+    docker exec -it --user root --workdir /app php-gitssh2-env bash -c "cd /app && composer install"
 )
 
 if "%cmd%" == "down" (
     set valid=true
-    docker-compose -f docker-compose.yml -p ssh2-env down;
+    docker-compose -f docker-compose.yml -p gitssh2-env down;
 )
 
 if "%cmd%" == "composer" (
     set valid=true
-    docker exec -it --user root --workdir /app php-ssh2-env bash -c "%allArgs%"
+    docker exec -it --user root --workdir /app php-gitssh2-env bash -c "%allArgs%"
 )
 
 if "%cmd%" == "login" (
     set valid=true
-    docker exec -it --user root %secondArg%-ssh2-env bash
+    docker exec -it --user root %secondArg%-gitssh2-env bash
 )
 
 if not "%valid%" == "true" (

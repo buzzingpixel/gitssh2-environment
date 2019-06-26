@@ -41,23 +41,23 @@ fi
 
 if [[ "${cmd}" = "up" ]]; then
     valid=true;
-    docker-compose -f docker-compose.yml -p ssh2-env up -d;
-    docker exec -it --user root --workdir /app php-ssh2-env bash -c "cd /app && composer install";
+    docker-compose -f docker-compose.yml -p gitssh2-env up -d;
+    docker exec -it --user root --workdir /app php-gitssh2-env bash -c "cd /app && composer install";
 fi
 
 if [[ "${cmd}" = "down" ]]; then
     valid=true;
-    docker-compose -f docker-compose.yml -p ssh2-env down;
+    docker-compose -f docker-compose.yml -p gitssh2-env down;
 fi
 
 if [[ "${cmd}" = "composer" ]]; then
     valid=true;
-    docker exec -it --user root --workdir /app php-ssh2-env bash -c "${allArgs}";
+    docker exec -it --user root --workdir /app php-gitssh2-env bash -c "${allArgs}";
 fi
 
 if [[ "${cmd}" = "login" ]]; then
     valid=true;
-    docker exec -it --user root ${secondArg}-ssh2-env bash;
+    docker exec -it --user root ${secondArg}-gitssh2-env bash;
 fi
 
 if [[ "${valid}" != "true" ]]; then
