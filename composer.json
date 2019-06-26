@@ -1,0 +1,24 @@
+{
+    "name": "buzzingpixel/gitssh2-environment",
+    "description": "buzzingpixel/gitssh2-environment",
+    "license": "proprietary",
+    "homepage": "https://www.buzzingpixel.com",
+    "authors": [
+        {
+            "name": "TJ Draper",
+            "email": "tj@buzzingpixel.com",
+            "homepage": "https://buzzingpixel.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "config": {
+        "bin-compat": "full",
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
